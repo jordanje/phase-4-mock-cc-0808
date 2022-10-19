@@ -2,7 +2,8 @@ class CampersController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def index
-        render json: Camper.all, status: :ok
+            campers =  Camper.all
+            render json: campers.as_json(only: [:id, :name, :age]), status: :ok
     end
 
     def show
